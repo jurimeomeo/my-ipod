@@ -1,3 +1,128 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+  <style>
+    @font-face {  
+      font-family: "Myriad Pro";  
+      src: url("https://dl.dropbox.com/scl/fi/z8hqw29h8a9i3a3cbbxkt/MYRIADPRO-REGULAR.OTF?rlkey=begwqxljs2gzyw26h00oeovzi&st=px0mbeax&dl=0") format("woff");
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .player-box {
+      padding: 10px;
+      border: 1px solid #FFE2EE;
+      background-image: url("https://i.pinimg.com/736x/0d/cc/4c/0dcc4c0ee206decd7ed0b817823f446e.jpg");
+      background-size: cover;
+      background-position: center;
+      display: inline-block;
+      border-radius: 12px;
+      font-family: "Myriad Pro", sans-serif;
+      font-size: 11px;
+    }
+    .ipod-flex { display: flex; align-items: center; }
+    #musicplayer {
+      display: block;
+      background: linear-gradient(0deg, #F1E3F0, white) padding-box, linear-gradient(to top, white, #A2A2A2) border-box;
+      border-radius: 60em;
+      border: 2px solid transparent;
+      margin-left: 6px;
+      padding-left: 6px;
+      padding-right: 6px;
+      box-shadow: 1px 1px 8px 0px rgba(128,128,128,0.27) inset;
+    }
+    .wheel {
+      display: block;
+      justify-content: center;
+      margin: auto;
+      background: linear-gradient(white, white) padding-box, linear-gradient(to top, white, #A2A2A2) border-box;
+      border-radius: 50em;
+      border: 2px solid transparent;
+      box-shadow: 1px 1px 8px 0px rgba(128,128,128,0.27) inset;
+      height: 80px;
+      width: 80px;
+    }
+    .innerwheel {  
+      border-radius: 50em;  
+      border: 2px solid #E2E2E2;        
+      padding: 4px 7px;  
+      margin: 0;  
+      box-shadow: 1px 1px 6px 0px rgba(128,128,128,0.17) inset;  
+    }
+    .wheelcontrols {        
+      font-size: 11px !important; 
+      text-align: center;        
+      color: #aaa;    
+      opacity: 0.8;    
+    }
+    .wheelcontrols button {    
+      background: none;    
+      border: none;    
+      color: #aaa;    
+      opacity: 0.6;    
+      font-size: 11px;    
+      padding: 1px;    
+      cursor: pointer;
+    }
+    .wheelcontrols button:hover, .controls button:hover { opacity: 1; }
+    .playpause-track { font-size: 16px !important; }
+    .songtitle {        
+      padding: 12px 10px 0 5px; 
+      color: #A3A3A3;      
+      font-size: 13px;        
+      display: block;        
+      font-family: "Myriad Pro", sans-serif;
+      width: 110px;
+    }     
+    .seeking {        
+      display: flex;        
+      justify-content: space-evenly;        
+      padding: 4px 5px 0 0; 
+      color: #A3A3A3;    
+      font-size: 9px;
+    }     
+    .seek_slider {  
+      -webkit-appearance: none;  
+      appearance: none;  
+      height: 4px;  
+      background: #e4d5dc;  
+      opacity: 0.7;  
+      border-radius: 8px;  
+      width: 100%;
+      margin: 0 4px;
+    }
+    .seek_slider::-webkit-slider-thumb {  
+      -webkit-appearance: none;  
+      appearance: none;  
+      width: 6px;  
+      height: 6px;  
+      background: white;  
+      cursor: pointer;  
+      border-radius: 50%;  
+      border: 1px solid #cecece;  
+    }
+    .controls button {
+      display: block;            
+      margin-left: 8px;        
+      font-size: 11px !important; 
+      text-align: center;        
+      color: #ccb3be;      
+      opacity: 0.6;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
 <div class="player-box">
   <div class="ipod-flex">          
     <div class="wheel">            
@@ -18,14 +143,14 @@
 
     <div id="musicplayer">
       <div class="ipod-flex">              
-        <marquee scrollamount="4" class="songtitle">Puretty - Song Title</marquee>            
+        <marquee scrollamount="3" class="songtitle">Puretty - Song Title</marquee>            
       </div>
       <div class="seeking">              
         <div class="current-time">00:00</div>
         <input type="range" min="1" max="100" value="0" class="seek_slider" onchange="seekTo()">
         <div class="total-duration">0:00</div>            
       </div>
-      <table class="controls">              
+      <table class="controls" style="margin-bottom: 5px;">              
         <tr>                
           <td><button><div class="fas fa-sync"></div></button></td>                
           <td><button><div class="fas fa-music"></div></button></td>                
@@ -37,121 +162,6 @@
     </div>        
   </div>
 </div>
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
-<style>
-  @font-face {  
-    font-family: "Myriad Pro";  
-    src: url("https://dl.dropbox.com/scl/fi/z8hqw29h8a9i3a3cbbxkt/MYRIADPRO-REGULAR.OTF?rlkey=begwqxljs2gzyw26h00oeovzi&st=px0mbeax&dl=0") format("woff");
-  }
-  .player-box {
-    padding: 12px;
-    border: 1px solid #FFE2EE;
-    background-image: url("https://i.pinimg.com/736x/0d/cc/4c/0dcc4c0ee206decd7ed0b817823f446e.jpg");
-    background-size: cover;
-    background-position: center;
-    display: inline-block;
-    border-radius: 8px;
-    font-family: "Myriad Pro", sans-serif;
-    font-size: 11px;
-  }
-  .ipod-flex { display: flex; }
-  #musicplayer {
-    display: block;
-    background: linear-gradient(0deg, #F1E3F0, white) padding-box, linear-gradient(to top, white, #A2A2A2) border-box;
-    border-radius: 60em;
-    border: 2px solid transparent;
-    margin-left: 8px;
-    padding-left: 10px;
-    box-shadow: 1px 1px 10px 0px rgba(128,128,128,0.27) inset;
-  }
-  .wheel {
-    display: block;
-    justify-content: center;
-    margin: auto;
-    background: linear-gradient(white, white) padding-box, linear-gradient(to top, white, #A2A2A2) border-box;
-    border-radius: 50em;
-    border: 2px solid transparent;
-    box-shadow: 1px 1px 10px 0px rgba(128,128,128,0.27) inset;
-    height: 100px;
-    width: 100px;
-  }
-  .innerwheel {  
-    border-radius: 50em;  
-    border: 2px solid #E2E2E2;        
-    padding: 9px 12px 9px 10px;  
-    margin: 0;  
-    box-shadow: 1px 1px 10px 0px rgba(128,128,128,0.17) inset;  
-  }
-  .wheelcontrols {        
-    font-size: 14px !important; 
-    text-align: center;        
-    padding-top: 2px;
-    color: #aaa;    
-    opacity: 0.8;    
-  }
-  .wheelcontrols button {    
-    background: none;    
-    border: none;    
-    color: #aaa;    
-    opacity: 0.6;    
-    font-size: 14px;    
-    padding: 2px;    
-    cursor: pointer;
-    min-width: 20px;
-  }
-  .wheelcontrols button:hover, .controls button:hover { opacity: 1; }
-  .playpause-track { font-size: 22px !important; padding: 3px; }
-  .songtitle {        
-    padding: 25px 20px 0 15px; 
-    color: #A3A3A3;      
-    font-size: 16px;        
-    display: block;        
-    font-family: "Myriad Pro", sans-serif;
-    width: 140px;
-  }     
-  .seeking {        
-    display: flex;        
-    justify-content: space-evenly;        
-    padding: 10px 10px 0 0; 
-    color: #A3A3A3;    
-  }     
-  .current-time { padding-right: 5px; }     
-  .total-duration { padding-left: 5px; }    
-  .seek_slider {  
-    -webkit-appearance: none;  
-    appearance: none;  
-    height: 6px;  
-    background: #e4d5dc;  
-    opacity: 0.7;  
-    transition: opacity .2s;  
-    border-radius: 8px;  
-    width: 100%;
-  }
-  .seek_slider::-webkit-slider-thumb {  
-    -webkit-appearance: none;  
-    appearance: none;  
-    width: 8px;  
-    height: 8px;  
-    background: white;  
-    cursor: pointer;  
-    border-radius: 50%;  
-    border: 1px solid #cecece;  
-    position: relative;  
-    bottom: 1px;
-  }
-  .controls button {
-    display: block;            
-    margin-left: 15px;        
-    font-size: 14px !important; 
-    text-align: center;        
-    color: #ccb3be;      
-    opacity: 0.6;
-    background: none;
-    border: none;
-    cursor: pointer;
-  }
-</style>
 
 <script>
   let isPlaying = false;
@@ -198,7 +208,7 @@
       let currentMinutes = Math.floor(curr_track.currentTime / 60);
       let currentSeconds = Math.floor(curr_track.currentTime - currentMinutes * 60);
       let durationMinutes = Math.floor(curr_track.duration / 60);
-      let durationSeconds = Math.floor(curr_track.duration - durationMinutes * 60);
+      let durationSeconds = Math.floor(curr_track.duration - durationSeconds * 60);
 
       if (currentSeconds < 10) { currentSeconds = "0" + currentSeconds; }
       if (durationSeconds < 10) { durationSeconds = "0" + durationSeconds; }
@@ -209,3 +219,5 @@
     }
   }
 </script>
+</body>
+</html>
