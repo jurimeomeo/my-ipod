@@ -1,0 +1,211 @@
+<div class="player-box">
+  <div class="ipod-flex">          
+    <div class="wheel">            
+      <div class="wheelcontrols">              
+        <button class="fas fa-plus" onclick="volumeUp()"></button>            
+      </div>            
+      <table class="wheelcontrols" style="margin: auto;">  
+        <tr>
+          <th><button class="fas fa-backward" onclick="prevTrack()"></button></th>  
+          <th class="innerwheel"><button class="playpause-track fas fa-play" onclick="playpauseTrack()"></button></th>  
+          <th><button class="fas fa-forward" onclick="nextTrack()"></button></th>
+        </tr>
+      </table>            
+      <div class="wheelcontrols" style="padding:0;">              
+        <button class="fas fa-minus" onclick="volumeDown()"></button>            
+      </div>          
+    </div>
+
+    <div id="musicplayer">
+      <div class="ipod-flex">              
+        <marquee scrollamount="4" class="songtitle">Puretty - Song Title</marquee>            
+      </div>
+      <div class="seeking">              
+        <div class="current-time">00:00</div>
+        <input type="range" min="1" max="100" value="0" class="seek_slider" onchange="seekTo()">
+        <div class="total-duration">0:00</div>            
+      </div>
+      <table class="controls">              
+        <tr>                
+          <td><button><div class="fas fa-sync"></div></button></td>                
+          <td><button><div class="fas fa-music"></div></button></td>                
+          <td><button><div class="fas fa-random"></div></button></td>              
+        </tr>            
+      </table>
+      
+      <audio id="music" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>          
+    </div>        
+  </div>
+</div>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+<style>
+  @font-face {  
+    font-family: "Myriad Pro";  
+    src: url("https://dl.dropbox.com/scl/fi/z8hqw29h8a9i3a3cbbxkt/MYRIADPRO-REGULAR.OTF?rlkey=begwqxljs2gzyw26h00oeovzi&st=px0mbeax&dl=0") format("woff");
+  }
+  .player-box {
+    padding: 12px;
+    border: 1px solid #FFE2EE;
+    background-image: url("https://i.pinimg.com/736x/0d/cc/4c/0dcc4c0ee206decd7ed0b817823f446e.jpg");
+    background-size: cover;
+    background-position: center;
+    display: inline-block;
+    border-radius: 8px;
+    font-family: "Myriad Pro", sans-serif;
+    font-size: 11px;
+  }
+  .ipod-flex { display: flex; }
+  #musicplayer {
+    display: block;
+    background: linear-gradient(0deg, #F1E3F0, white) padding-box, linear-gradient(to top, white, #A2A2A2) border-box;
+    border-radius: 60em;
+    border: 2px solid transparent;
+    margin-left: 8px;
+    padding-left: 10px;
+    box-shadow: 1px 1px 10px 0px rgba(128,128,128,0.27) inset;
+  }
+  .wheel {
+    display: block;
+    justify-content: center;
+    margin: auto;
+    background: linear-gradient(white, white) padding-box, linear-gradient(to top, white, #A2A2A2) border-box;
+    border-radius: 50em;
+    border: 2px solid transparent;
+    box-shadow: 1px 1px 10px 0px rgba(128,128,128,0.27) inset;
+    height: 100px;
+    width: 100px;
+  }
+  .innerwheel {  
+    border-radius: 50em;  
+    border: 2px solid #E2E2E2;        
+    padding: 9px 12px 9px 10px;  
+    margin: 0;  
+    box-shadow: 1px 1px 10px 0px rgba(128,128,128,0.17) inset;  
+  }
+  .wheelcontrols {        
+    font-size: 14px !important; 
+    text-align: center;        
+    padding-top: 2px;
+    color: #aaa;    
+    opacity: 0.8;    
+  }
+  .wheelcontrols button {    
+    background: none;    
+    border: none;    
+    color: #aaa;    
+    opacity: 0.6;    
+    font-size: 14px;    
+    padding: 2px;    
+    cursor: pointer;
+    min-width: 20px;
+  }
+  .wheelcontrols button:hover, .controls button:hover { opacity: 1; }
+  .playpause-track { font-size: 22px !important; padding: 3px; }
+  .songtitle {        
+    padding: 25px 20px 0 15px; 
+    color: #A3A3A3;      
+    font-size: 16px;        
+    display: block;        
+    font-family: "Myriad Pro", sans-serif;
+    width: 140px;
+  }     
+  .seeking {        
+    display: flex;        
+    justify-content: space-evenly;        
+    padding: 10px 10px 0 0; 
+    color: #A3A3A3;    
+  }     
+  .current-time { padding-right: 5px; }     
+  .total-duration { padding-left: 5px; }    
+  .seek_slider {  
+    -webkit-appearance: none;  
+    appearance: none;  
+    height: 6px;  
+    background: #e4d5dc;  
+    opacity: 0.7;  
+    transition: opacity .2s;  
+    border-radius: 8px;  
+    width: 100%;
+  }
+  .seek_slider::-webkit-slider-thumb {  
+    -webkit-appearance: none;  
+    appearance: none;  
+    width: 8px;  
+    height: 8px;  
+    background: white;  
+    cursor: pointer;  
+    border-radius: 50%;  
+    border: 1px solid #cecece;  
+    position: relative;  
+    bottom: 1px;
+  }
+  .controls button {
+    display: block;            
+    margin-left: 15px;        
+    font-size: 14px !important; 
+    text-align: center;        
+    color: #ccb3be;      
+    opacity: 0.6;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+</style>
+
+<script>
+  let isPlaying = false;
+  let updateTimer;
+  const curr_track = document.getElementById("music");
+  const playpause_btn = document.querySelector(".playpause-track");
+  const seek_slider = document.querySelector(".seek_slider");
+  const curr_time = document.querySelector(".current-time");
+  const total_duration = document.querySelector(".total-duration");
+
+  function playpauseTrack() {
+    if (!isPlaying) {
+      curr_track.play();
+      isPlaying = true;
+      playpause_btn.classList.remove("fa-play");
+      playpause_btn.classList.add("fa-pause");
+      updateTimer = setInterval(seekUpdate, 1000);
+    } else {
+      curr_track.pause();
+      isPlaying = false;
+      playpause_btn.classList.remove("fa-pause");
+      playpause_btn.classList.add("fa-play");
+      clearInterval(updateTimer);
+    }
+  }
+
+  function seekTo() {
+    let seekto = curr_track.duration * (seek_slider.value / 100);
+    curr_track.currentTime = seekto;
+  }
+
+  function volumeUp() {
+    if (curr_track.volume < 1) curr_track.volume = Math.min(1, curr_track.volume + 0.1);
+  }
+
+  function volumeDown() {
+    if (curr_track.volume > 0) curr_track.volume = Math.max(0, curr_track.volume - 0.1);
+  }
+
+  function seekUpdate() {
+    if (!isNaN(curr_track.duration)) {
+      let seekPosition = curr_track.currentTime * (100 / curr_track.duration);
+      seek_slider.value = seekPosition;
+      let currentMinutes = Math.floor(curr_track.currentTime / 60);
+      let currentSeconds = Math.floor(curr_track.currentTime - currentMinutes * 60);
+      let durationMinutes = Math.floor(curr_track.duration / 60);
+      let durationSeconds = Math.floor(curr_track.duration - durationMinutes * 60);
+
+      if (currentSeconds < 10) { currentSeconds = "0" + currentSeconds; }
+      if (durationSeconds < 10) { durationSeconds = "0" + durationSeconds; }
+      if (currentMinutes < 10) { currentMinutes = "0" + currentMinutes; }
+
+      curr_time.textContent = currentMinutes + ":" + currentSeconds;
+      total_duration.textContent = durationMinutes + ":" + durationSeconds;
+    }
+  }
+</script>
